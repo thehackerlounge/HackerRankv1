@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linux Terminal</title>
+    <link rel="stylesheet" type="text/css" href="popup.css">
+    <style>
+      /* Add your CSS styles here */
+      body {
+        font-family: monospace;
+        background-color: black;
+        color: white;
+        margin: 0;
+        padding: 0;
+      }
+
+      .terminal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        overflow-y: auto;
+      }
+
+      .input-line {
+        display: flex;
+      }
+
+      .input-line::before {
+        content: "$ ";
+        padding-right: 5px;
+      }
+
+      .input {
+        flex: 1;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: white;
+      }
+
+      .output {
+        margin-bottom: 10px;
+      }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+      <!-- Output for ASCII art -->
+      <div class="output">
+        <pre>
+          
+████████╗██╗  ██╗███████╗    ██╗  ██╗ █████╗  ██████╗██╗  ██╗███████╗██████╗     ██╗      ██████╗ ██╗   ██╗███╗   ██╗ ██████╗ ███████╗
+╚══██╔══╝██║  ██║██╔════╝    ██║  ██║██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗    ██║     ██╔═══██╗██║   ██║████╗  ██║██╔════╝ ██╔════╝
+   ██║   ███████║█████╗      ███████║███████║██║     █████╔╝ █████╗  ██████╔╝    ██║     ██║   ██║██║   ██║██╔██╗ ██║██║  ███╗█████╗  
+   ██║   ██╔══██║██╔══╝      ██╔══██║██╔══██║██║     ██╔═██╗ ██╔══╝  ██╔══██╗    ██║     ██║   ██║██║   ██║██║╚██╗██║██║   ██║██╔══╝  
+   ██║   ██║  ██║███████╗    ██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██║  ██║    ███████╗╚██████╔╝╚██████╔╝██║ ╚████║╚██████╔╝███████╗
+   ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝
+                                                                                                                                      
+
+         Capture the flag to get your first Hacker Rank
+
+         Here are a list of commands you can use: 
+         ls           whomai        update
+         pwd          cat           top
+         cd           ping          neofetch
+
+      </div>
+      <!-- Opening input line -->
+      <div class="input-line">
+        <input
+          type="text"
+          class="input"
+          id="command-input"
+          autocomplete="off"
+        />
+      </div>
+    </div>
+
+    <script>
+      // Add your JavaScript code here
+      const commandOutputs = {
+        ls: ["file.txt"],
+        "cd Hidden": ["You are not in a hidden directory"],
+        "ls Hidden": ["almost.txt"],
+        "ls -la Hidden": ["almost.txt", "flag.txt"]
+        "cat almost.txt": ["close, dig a little deeper"],
+        "ls -la Hidden /*": ["almost.txt", "flag.txt"],
+        "ls -la": ["Hidden"],
+        pwd: ["/home/hacker"],
+        whomai: ["hacker"],
+        ping: [
+          "PING server 56(84) bytes of data.",
+          "64 bytes from serv03.s1102.flp: icmp_seq=1 ttl=116 time=23.7 ms",
+          "64 bytes from serv03.s1102.flp: icmp_seq=1 ttl=116 time=23.7 ms",
+          "64 bytes from serv03.s1102.flp: icmp_seq=1 ttl=116 time=23.7 ms",
+          "64 bytes from serv03.s1102.flp: icmp_seq=1 ttl=116 time=23.7 ms",
+          "[===========] You are connected to the server"
+        ],
+        update: ["[==========================]100% system is all up to date"],
+        top: ["Processes: 57 total, 1 running, 56 sleeping, 234 MiB RAM"],
+        neofetch: [
+          "OS: Linux",
+          "Host: user-pc",
+          "Kernel: 5.4.0-90-generic",
+          "Uptime: 2 days, 10 hours, 5 mins",
+          "Packages: 1440 (dpkg)",
+          "Shell: bash 5.0.17",
+          "Resolution: 1366x768",
+          "DE: GNOME",
+          "WM: Mutter",
+          "WM Theme: Adwaita",
+          "Theme: Yaru-dark [GTK2/3]",
+          "Icons: Yaru [GTK2/3]",
+          "Terminal: gnome-terminal",
+          "CPU: Intel i5-8250U (8) @ 3.400GHz",
+          "GPU: Intel UHD Graphics 620",
+          "Memory: 4098MiB / 7856MiB"],
+   
+        
+        "cat flag.txt": [
+  'Welcome to The Hacker Lounge, in order to get your first Hacker Rannk you need to decode this encrypted message and send it to a community Admin or Moderator: V2l0aCBncmVhdCBwb3dlciBjb21lcyBncmVhdCByZXNwb25zaWJpbHR5',
+  'See you soon, CRTL + ALT 1337',
+  '<img src="https://media1.tenor.com/m/9700wLJ7dWUAAAAd/meme-pepe.gif" alt="Hacker Lounge GIF">',
+],
+  
+      };
+
+      const terminal = document.querySelector(".terminal");
+      const commandInput = document.getElementById("command-input");
+      
+      // Function to execute commands
+      function executeCommand(command) {
+        const output = commandOutputs[command] || [
+          `bash: ${command}: command not found`,
+        ];
+        const outputDiv = document.createElement("div");
+        outputDiv.classList.add("output");
+        output.forEach((line) => {
+          outputDiv.innerHTML += `<p>${line}</p>`;
+        });
+        terminal.insertBefore(outputDiv, commandInput.parentNode);
+        commandInput.value = "";
+        terminal.scrollTop = terminal.scrollHeight;
+      }
+
+      // Execute initial figlet command on terminal load
+     
+
+      commandInput.focus();
+
+      commandInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          const command = commandInput.value;
+          executeCommand(command);
+        }
+      });
+    </script>
+  </body>
+</html>
